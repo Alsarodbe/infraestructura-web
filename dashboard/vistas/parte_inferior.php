@@ -61,6 +61,12 @@ aria-hidden="true">
 <script src="js/demo/chart-area-demo.js"></script>
 <script src="js/demo/chart-pie-demo.js"></script>
 
+    <!-- datatables JS -->
+    <script type="text/javascript" src="vendor/datatables/datatables.min.js"></script>    
+    <!-- código propio JS --> 
+    <script type="text/javascript" src="main.js"></script> 
+  
+
 </body>
 
 </html>

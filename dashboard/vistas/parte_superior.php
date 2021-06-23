@@ -19,7 +19,11 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
+        <!--datables CSS básico-->
+        <link rel="stylesheet" type="text/css" href="vendor/datatables/datatables.min.css"/>
+        <!--datables estilo bootstrap 4 CSS-->  
+        <link rel="stylesheet"  type="text/css" href="vendor/datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">      
+        
 </head>
 
 <body id="page-top">
@@ -31,7 +35,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -67,7 +71,7 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Todas las Utilidades:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Agregar Contraseña</a>
+                        <a class="collapse-item" href="agregarcontra.php">Agregar Contraseña</a>
                     </div>
                 </div>
             </li>
@@ -110,11 +114,11 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Tablas:</h6>
-                        <a class="collapse-item" href="buttons.html">Tabla Principal</a>
-                        <a class="collapse-item" href="cards.html">Tabla Usuarios</a>
+                        <a class="collapse-item" href="tablacompleta.php">Tabla Principal</a>
+                        <a class="collapse-item" href="tablausuarios.php">Tabla Usuarios</a>
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Otras Páginas:</h6>
-                        <a class="collapse-item" href="blank.html">Perfil</a>
+                        <a class="collapse-item" href="perfilusuario.php">Perfil</a>
                     </div>
                 </div>
             </li>
