@@ -1,18 +1,22 @@
 <!DOCTYPE html>
-<html lang="en" >
-<head>
-  <meta charset="UTF-8">
-  <title>CodePen - Sidebar Menu Hover Show/Hide CSS</title>
-  <link rel="stylesheet" href="./style.css">
+<html lang="en">
 
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>CodePen - Sidebar Menu Hover Show/Hide CSS</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/Titillium%20Web.css">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
-<!-- partial:index.partial.html -->
-<html>
-  <head>
+
+<body><!-- partial:index.partial.html -->
+
+  
  
-  </head>
-  <body><div class="area"></div><nav class="main-menu">
+  
+  <div class="area"></div><nav class="main-menu">
             <ul>
                 <li>
                     <a href="index.html">
@@ -103,9 +107,34 @@
                 </li>  
             </ul>
         </nav>
-  </body>
-    </html>
 <!-- partial -->
-  
+    <div id="intDer">
+        <h1>Perfiles</h1>
+        <div class="table-responsive">
+            <table class="table" id="idTabla">
+                <thead>
+                    <tr>
+                        <th>Website</th>
+                        <th>Usuario</th>
+                        <th>Contraseña</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Google.com</td>
+                        <td>Miguel</td>
+                        <td>123Migue</td>
+                        <td><button class="btn btn-primary" type="button">Editar</button></td>
+                        <td><button class="btn btn-primary" id="btnEliminar" type="button" name="btnEliminar">Eliminar</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/java.js"></script>
 </body>
+
 </html>
