@@ -2,35 +2,47 @@
 
 <!--INICIO del cont principal-->
 <?php
-include_once 'bd/conexion.php';
-$objeto = new Conexion();
-$conexion = $objeto->Conectar();
 
-    $consulta = "SELECT * FROM users WHERE id = '$idUs'";			
-    $resultado = $conexion->prepare($consulta);
-    $resultado->execute();
-    $datos=$resultado->fetchAll(PDO::FETCH_ASSOC);
-        $nombre = $datos['name'];
+$conexion = mysqli_connect("localhost","root","","infraDB");
+    $provemail = $_SESSION["email"];
+    $consulta = "SELECT * FROM usuarios WHERE email = '$provemail'";			
+    $resultado = $conexion->query($consulta);
+                $idusuario = null;
+                $email = null;
+                $pass = null;
+                $nombre = null;
+                $apellido = null;
+                $telefono = null;
+                $pais = null;
+        if($resultado->num_rows>0){
+            $data = $resultado->fetch_assoc();
+                $idusuario = $data['idUsuario'];
+                $email = $data['email'];
+                $pass = $data['pass'];
+                $nombre = $data['nombre'];
+                $apellido = $data['apellido'];
+                $telefono = $data['telefono'];
+                $pais = $data['pais'];
+        }
 
 ?>
 <hr>
 <div class="container bootstrap snippet">
     <div class="row">
-  		<div class="col-sm-10"><h1>User name</h1></div>
+  		<div class="col-sm-10"><h1><?php echo $email ?></h1></div>
     </div>
     <div class="row">
   		<div class="col-sm-3"><!--left col-->
 
       <div class="text-center">
         <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
-        <input type="file" class="text-center center-block file-upload">
       </div></hr><br>
           
         </div><!--/col-3-->
     	<div class="col-sm-9">
             <ul class="nav nav-tabs">
                 <li class="active"><a data-toggle="tab" href="#home">Información</a></li>
-                <li><p>   _|_   </p></li>
+                <li><p>   _____|_____   </p></li>
                 <li><a data-toggle="tab" href="#messages">Editar</a></li>
               </ul>
 
@@ -42,42 +54,42 @@ $conexion = $objeto->Conectar();
                   <div class="form-group">
                           <div class="col-xs-6">
                               <label for=""><h4>Nombre:</h4></label><br>
-                              <label><h4>Nombre</h4></label>
+                              <label><h4><?php echo $nombre ?></h4></label>
                            </div>
                       </div>
                       <div class="form-group">
                           
                           <div class="col-xs-6">
                             <label for=""><h4>Apellidos:</h4></label><br>
-                            <label><h4>Apellidos</h4></label>
+                            <label><h4><?php echo $apellido ?></h4></label>
                           </div>
                       </div>
           
                       <div class="form-group">
                           <div class="col-xs-6">
                              <label for=""><h4>Telefono:</h4></label><br>
-                             <label for=""><h4>Telefono</h4></label>
+                             <label for=""><h4><?php echo $telefono ?></h4></label>
                            </div>
                       </div>
                       <div class="form-group">
                           
                           <div class="col-xs-6">
                               <label for=""><h4>Correo electronico:</h4></label><br>
-                              <label for=""><h4>Correo electronico</h4></label>
+                              <label for=""><h4><?php echo $email ?></h4></label>
                            </div>
                       </div>
                       <div class="form-group">
                           
                           <div class="col-xs-6">
                               <label for=""><h4>Pais:</h4></label><br>
-                              <label for=""><h4>Pais</h4></label>
+                              <label for=""><h4><?php echo $pais ?></h4></label>
                           </div>
                       </div>
                       <div class="form-group">
                           
                           <div class="col-xs-6">
                               <label for=""><h4>Contraseña:</h4></label><br>
-                              <label for=""><h4>Contraseña</h4></label>
+                              <label for=""><h4><?php echo $pass ?></h4></label>
                           </div>
                       </div>
               	</form>
@@ -95,55 +107,48 @@ $conexion = $objeto->Conectar();
                           
                           <div class="col-xs-6">
                               <label for=""><h4>Nombre</h4></label>
-                              <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Apellidos" title="Coloca tu nombre">
+                              <input type="text" value="<?php echo $nombre ?>" class="form-control" name="nombre" id="nombre" placeholder="Apellidos" title="Coloca tu nombre">
                           </div>
                       </div>
                       <div class="form-group">
                           
                           <div class="col-xs-6">
                             <label for=""><h4>Apellidos</h4></label>
-                              <input type="text" class="form-control" name="apellidos" id="apellidos" placeholder="Apellidos" title="Coloca tus apellidos">
+                              <input type="text" value="<?php echo $apellido ?>" class="form-control" name="apellidos" id="apellidos" placeholder="Apellidos" title="Coloca tus apellidos">
                           </div>
                       </div>
           
                       <div class="form-group">
                           <div class="col-xs-6">
                              <label for=""><h4>Telefono</h4></label>
-                              <input type="text" class="form-control" name="telefono" id="telefono" placeholder="Número de Telefono" title="Coloca tu número de Telefono">
+                              <input type="text" value="<?php echo $telefono ?>" class="form-control" name="telefono" id="telefono" placeholder="Número de Telefono" title="Coloca tu número de Telefono">
                           </div>
                       </div>
                       <div class="form-group">
                           
                           <div class="col-xs-6">
                               <label for=""><h4>Correo electronico</h4></label>
-                              <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="Coloca tu Correo">
+                              <input type="email" disabled= "disabled" value="<?php echo $email ?>" class="form-control" name="email" id="email" placeholder="you@email.com" title="Coloca tu Correo">
                           </div>
                       </div>
                       <div class="form-group">
                           
                           <div class="col-xs-6">
                               <label for=""><h4>Pais</h4></label>
-                              <input type="email" class="form-control" id="location" placeholder="Pais" title="Coloca tu pais">
+                              <input type="text" value="<?php echo $pais ?>" class="form-control" id="location"name="pais" id="pais" placeholder="Pais" title="Coloca tu pais">
                           </div>
                       </div>
                       <div class="form-group">
                           
                           <div class="col-xs-6">
                               <label for=""><h4>Contraseña</h4></label>
-                              <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña" title="Coloca tu contraseña">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                            <label for=""><h4>Verificar</h4></label>
-                              <input type="password" class="form-control" name="password2" id="password2" placeholder="Verificar Contraseña" title="Coloca tu contraseña">
+                              <input type="password" value="<?php echo $pass ?>" class="form-control" name="pass" id="pass" placeholder="Contraseña" title="Coloca tu contraseña">
                           </div>
                       </div>
                       <div class="form-group">
                            <div class="col-xs-12">
                                 <br>
-                              	<button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Guardar</button>
+                              	<button class="btn btn-lg btn-success" type="submit" name="guardar"><i class="glyphicon glyphicon-ok-sign"></i> Guardar</button>
                                	<button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Limpiar</button>
                             </div>
                       </div>

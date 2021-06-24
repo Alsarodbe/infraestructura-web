@@ -5,18 +5,22 @@
         $email_R =  $_POST["txtEmail_R"];
         $pass_R =  $_POST["txtPass_R"];
         
-        $conexion = mysqli_connect("localhost","root","","inventario");;
-        $consulta = "INSERT INTO usuarios (email, pass) VALUES('$email_R', '$pass_R') ";			
+        $conexion = mysqli_connect("localhost","root","","infraDB");
+        $consulta = "INSERT INTO usuarios (email, pass,nombre) VALUES('$email_R', '$pass_R','$name') ";			
         $resultado = $conexion->prepare($consulta);
         $resultado->execute(); 
-        
-        header("Location: index.php");
+            echo '<div class = "formulario-div" style ="color:green">';
+            echo '<h1 style = "text-align:center">'."Usuario Agregado".'</h1>';
+            echo '<p></p>';
+            echo '<h4 style = "text-align:center">Redireccionando...</h4>';
+            echo '</div>';
+            header('refresh:2,url =index.php');
     }
     if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['btnIniciasesion'])){
         $email =  $_POST["txtEmail"];
         $pass =  $_POST["txtPass"];
 
-        $conexion = mysqli_connect("localhost","root","","inventario");
+        $conexion = mysqli_connect("localhost","root","","infraDB");
         $consulta = "SELECT email,pass FROM usuarios WHERE email='$email' AND pass='$pass' ";
         $resultado = $conexion->query($consulta);
         $newemail = null;

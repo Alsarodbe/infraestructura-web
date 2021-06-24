@@ -59,7 +59,8 @@ if($_SESSION["email"] === null){
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
-
+            <?php
+/*
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -83,7 +84,8 @@ if($_SESSION["email"] === null){
                     </div>
                 </div>
             </li>
-
+*/
+?>
             <!-- Divider -->
             <hr class="sidebar-divider">
 
