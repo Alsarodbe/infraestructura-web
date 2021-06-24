@@ -38,7 +38,7 @@ aria-hidden="true">
     <div class="modal-body">Usar "Cerrar sesion" te dirigirá a la pantalla de inicio de sesión ¿Estas seguro de esto?</div>
     <div class="modal-footer">
         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-        <a class="btn btn-primary" href="../Login/dist/index.php">Salir</a>
+        <a class="btn btn-primary" href="../dashboard/bd/logout.php">Salir</a>
     </div>
 </div>
 </div>

@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+if($_SESSION["email"] === null){
+    header("Location: ../dashboard/index.php");
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,7 +43,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.php">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -47,7 +55,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.php">
+                <a class="nav-link" href="dashboard.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -94,9 +102,8 @@
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Ventanas inicio:</h6>
-                        <a class="collapse-item" href="../Login/dist/index.php">Inicio de sesión</a>
-                        <a class="collapse-item" href="../Login/dist/index.php">Registrate</a>
-                        <a class="collapse-item" href="../Login/dist/index.php">Olvidé contraseña</a>
+                        <a class="collapse-item" href="../dashboard/bd/logout.php">Inicio de sesión</a>
+                        <a class="collapse-item" href="../dashboard/bd/logout.php">Registrate</a>
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Otras Páginas:</h6>
                         <a class="collapse-item" href="blank.html">Página en blanco</a>
@@ -115,7 +122,6 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Tablas:</h6>
                         <a class="collapse-item" href="tablacompleta.php">Tabla Principal</a>
-                        <a class="collapse-item" href="tablausuarios.php">Tabla Usuarios</a>
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Otras Páginas:</h6>
                         <a class="collapse-item" href="perfilusuario.php">Perfil</a>
@@ -157,14 +163,14 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Luis Miguel</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION["email"]; ?></span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="Perfil.php">
+                                <a class="dropdown-item" href="perfilusuario.php">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Perfil
                                 </a>
