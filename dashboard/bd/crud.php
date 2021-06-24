@@ -9,6 +9,7 @@ $nombre = (isset($_POST['nombre'])) ? $_POST['nombre'] : '';
 $pagina = (isset($_POST['pagina'])) ? $_POST['pagina'] : '';
 $contra = (isset($_POST['contra'])) ? $_POST['contra'] : '';
 $opcion = (isset($_POST['opcion'])) ? $_POST['opcion'] : '';
+//$user_id = (isset($_POST['user_id'])) ? $_POST['user_id'] : '';
 $id = (isset($_POST['id'])) ? $_POST['id'] : '';
 
 switch($opcion){
@@ -17,26 +18,32 @@ switch($opcion){
         $resultado = $conexion->prepare($consulta);
         $resultado->execute(); 
 
-        $consulta = "SELECT idPag,pagina,nombre,contra FROM paginas ORDER BY idPag DESC LIMIT 1";
+        $consulta = "SELECT * FROM paginas ORDER BY id DESC LIMIT 1";
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
         $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
         break;
     case 2: //modificación
-        $consulta = "UPDATE paginas SET nombre='$nombre', pagina='$pagina', contra='$contra' WHERE idPag='$id' ";		
+        $consulta = "UPDATE paginas SET nombre='$nombre', pagina='$pagina', contra='$contra' WHERE id='$id' ";		
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();        
         
-        $consulta = "SELECT idPag,pagina,nombre,contra FROM paginas WHERE idPag='$id' ";       
+        $consulta = "SELECT * FROM paginas WHERE id='$id' ";       
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
         $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
         break;        
     case 3://baja
-        $consulta = "DELETE FROM paginas WHERE idPag='$id' ";		
+        $consulta = "DELETE FROM paginas WHERE id='$id' ";		
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();                           
-        break;        
+        break; 
+    case 4:    
+        $consulta = "SELECT * FROM paginas";
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();        
+        $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
+        break;       
 }
 
 print json_encode($data, JSON_UNESCAPED_UNICODE); //enviar el array final en formato json a JS

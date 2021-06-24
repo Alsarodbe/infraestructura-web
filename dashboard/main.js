@@ -1,13 +1,21 @@
 $(document).ready(function(){
-    var user_id, opcion;
+    var id, opcion;
     opcion = 4;
 
     tablaPaginas = $("#tablaPaginas").DataTable({
-       "columnDefs":[{
-        "targets": -1,
-        "data":null,
-        "defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btnEditar'>Editar</button><button class='btn btn-danger btnBorrar'>Borrar</button></div></div>"  
-       }],
+        "ajax":{            
+            "url": "bd/crud.php", 
+            "method": 'POST', //usamos el metodo POST
+            "data":{opcion:opcion}, //enviamos opcion 4 para que haga un SELECT
+            "dataSrc":""
+        },
+        "columns":[
+            {"data": "id"},
+            {"data": "pagina"},
+            {"data": "nombre"},
+            {"data": "contra"},
+            {"defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btn-sm btnEditar'>Editar</button><button class='btn btn-danger btn-sm btnBorrar'>Eliminar</button></div></div>"}
+        ],
         
         //Para cambiar el lenguaje a español
     "language": {
@@ -27,44 +35,40 @@ $(document).ready(function(){
         }
     });
 
-$("#formPaginas").submit(function(e){
+var fila; //captura la fila, para editar o eliminar
+//submit para el Alta y Actualización
+$('#formPaginas').submit(function(e){
     e.preventDefault();    
     nombre = $.trim($("#nombre").val());
     pagina = $.trim($("#pagina").val());
-    contra = $.trim($("#contra").val());    
+    contra = $.trim($("#contra").val());  
+
     $.ajax({
         url: "bd/crud.php",
         type: "POST",
-        dataType: "json",
-        data: {nombre:nombre, pagina:pagina, contra:contra, id:id, opcion:opcion},
-        success: function(data){  
-            console.log(data);
-            id = data[0].id;            
-            nombre = data[0].nombre;
-            pagina = data[0].pagina;
-            contra = data[0].contra;
-            if(opcion == 1){tablaPaginas.row.add([id,nombre,pagina,contra]).draw();}
-            else{tablaPaginas.row(fila).data([id,nombre,pagina,contra]).draw();}            
-        }        
-    });
+        datatype:"json",    
+        data: {id:id,pagina:pagina,nombre:nombre, contra:contra, opcion:opcion},    
+        success: function(data) {
+            tablaPaginas.ajax.reload(null, false);
+         }
+      });	
     $("#modalCRUD").modal("hide");    
     
 }); 
     
 $("#btnNuevo").click(function(){
+    opcion = 1; //alta
+    id=null;
     $("#formPaginas").trigger("reset");
     $(".modal-header").css("background-color", "#1cc88a");
     $(".modal-header").css("color", "white");
     $(".modal-title").text("Nueva Página");            
-    $("#modalCRUD").modal("show");        
-    id=null;
-    opcion = 1; //alta
+    $('#modalCRUD').modal('show');        
 });    
   
-var fila; //capturar la fila para editar o borrar el registro
-    
 //botón EDITAR    
 $(document).on("click", ".btnEditar", function(){
+    opcion = 2; //editar
     fila = $(this).closest("tr");
     id = parseInt(fila.find('td:eq(0)').text());
     pagina = fila.find('td:eq(1)').text();
@@ -74,19 +78,19 @@ $(document).on("click", ".btnEditar", function(){
     $("#pagina").val(pagina);
     $("#nombre").val(nombre);
     $("#contra").val(contra);
-    opcion = 2; //editar
+    
     
     $(".modal-header").css("background-color", "#4e73df");
     $(".modal-header").css("color", "white");
     $(".modal-title").text("Editar Página");            
-    $("#modalCRUD").modal("show");  
+    $('#modalCRUD').modal('show');  
     
 });
 
 //botón BORRAR
 $(document).on("click", ".btnBorrar", function(){    
     fila = $(this);
-    id = parseInt($(this).closest("tr").find('td:eq(0)').text());
+    id = parseInt($(this).closest('tr').find('td:eq(0)').text());
     opcion = 3 //borrar
     var respuesta = confirm("¿Está seguro de eliminar el registro: "+id+"?");
     if(respuesta){

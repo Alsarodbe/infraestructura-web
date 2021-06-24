@@ -3,20 +3,6 @@
 <!--INICIO del cont principal-->
 <div class="container">
     <h1>Tabla Completa</h1>
-    
-    
-    
- <?php
-include_once "bd/conexion.php";
-$objeto = new Conexion();
-$conexion = $objeto->Conectar();
-
-$consulta = "SELECT idPag,pagina,nombre,contra FROM paginas";
-$resultado = $conexion->prepare($consulta);
-$resultado->execute();
-$data=$resultado->fetchAll(PDO::FETCH_ASSOC);
-?>
-
 
 <div class="container">
         <div class="row">
@@ -33,27 +19,14 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
                         <table id="tablaPaginas" class="table table-striped table-bordered table-condensed" style="width:100%">
                         <thead class="text-center">
                             <tr>
-                                <th>ID</th>
+                                <th>id</th>
                                 <th>Página Web</th>
                                 <th>Nombre Usuario</th>
                                 <th>Contraseña</th>     
                                 <th>Acciones</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <?php                            
-                            foreach($data as $dat) {                                                        
-                            ?>
-                            <tr>
-                                <td><?php echo $dat['idPag'] ?></td>
-                                <td><?php echo $dat['pagina'] ?></td>
-                                <td><?php echo $dat['nombre'] ?></td>
-                                <td><?php echo $dat['contra'] ?></td>  
-                                <td></td>
-                            </tr>
-                            <?php
-                                }
-                            ?>                                
+                        <tbody>                 
                         </tbody>        
                        </table>                    
                     </div>
@@ -72,18 +45,24 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
             </div>
         <form id="formPaginas">    
             <div class="modal-body">
-                <div class="form-group">
-                <label for="pagina" class="col-form-label">Página:</label>
-                <input type="text" class="form-control" id="pagina">
-                </div> 
-                <div class="form-group">
-                <label for="nombre" class="col-form-label">Nombre Usuario:</label>
-                <input type="text" class="form-control" id="nombre">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                    <label for="" class="col-form-label">Página:</label>
+                    <input type="text" class="form-control" id="pagina">
+                    </div> 
                 </div>
-                <div class="form-group">
-                <label for="contra" class="col-form-label">Contraseña:</label>
-                <input type="text" class="form-control" id="contra">
-                </div>      
+                <div class="col-lg-6">
+                    <div class="form-group">
+                    <label for="" class="col-form-label">Nombre Usuario:</label>
+                    <input type="text" class="form-control" id="nombre">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                    <label for="" class="col-form-label">Contraseña:</label>
+                    <input type="text" class="form-control" id="contra">
+                    </div> 
+                </div>     
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-light" data-dismiss="modal">Cancelar</button>
